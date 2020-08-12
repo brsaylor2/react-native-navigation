@@ -74,7 +74,17 @@ export default class NavigationScreen extends React.Component<Props> {
   }
 
   setRoot = () => Navigation.showModal(Screens.SetRoot);
-  showModal = () => Navigation.showModal(Screens.Modal);
+  showModal = () => {
+    Navigation.showModal({
+      component: {
+        name: Screens.Modal,
+        passProps: {
+          modalPosition: 1,
+          previousModalIds: [],
+        },
+      },
+    });
+  };
 
   showPageSheetModal = () =>
     Navigation.showModal(Screens.Modal, {

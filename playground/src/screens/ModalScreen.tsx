@@ -30,6 +30,8 @@ interface Props {
   modalPosition?: number;
 }
 
+const constructedComponentIds = new Set<string>();
+
 export default class ModalScreen extends NavigationComponent<Props> {
   static options() {
     return {
@@ -40,6 +42,23 @@ export default class ModalScreen extends NavigationComponent<Props> {
         },
       },
     };
+  }
+
+  constructor(props: any) {
+    super(props);
+
+    const alreadyConstructed = constructedComponentIds.has(props.componentId);
+    const missingPassProp = !props.modalPosition;
+
+    if (alreadyConstructed || missingPassProp) {
+      console.warn(
+        `${props.componentId}: ${alreadyConstructed ? 'alreadyConstructed' : ''} ${
+          missingPassProp ? 'missingPassProp' : ''
+        }`
+      );
+    }
+
+    constructedComponentIds.add(props.componentId);
   }
 
   render() {
@@ -62,7 +81,7 @@ export default class ModalScreen extends NavigationComponent<Props> {
         />
         {this.getPreviousModalId() && (
           <Button
-            label="Dismiss Previous Modal"
+            label={`Dismiss Previous Modal (${this.getPreviousModalId()})`}
             testID={DISMISS_PREVIOUS_MODAL_BTN}
             onPress={this.dismissPreviousModal}
           />
