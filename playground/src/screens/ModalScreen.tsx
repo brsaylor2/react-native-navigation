@@ -47,7 +47,14 @@ export default class ModalScreen extends NavigationComponent<Props, State> {
       topBar: {
         testID: MODAL_SCREEN_HEADER,
         title: {
-          text: 'Modal',
+          component: {
+            name: Screens.ReactTitleView,
+            alignment: 'fill',
+            passProps: {
+              clickable: true,
+              text: 'Press Me',
+            },
+          },
         },
       },
     };
