@@ -60,10 +60,20 @@ export default class LayoutsScreen extends NavigationComponent<NavigationCompone
         title: {
           text: 'React Native Navigation',
         },
+        leftButtons: [
+          {
+            id: 'leftbutton',
+            icon: require('../../img/whatshot.png'),
+          },
+        ],
         rightButtons: [
           {
             text: 'Hit',
             id: 'HitRightButton',
+          },
+          {
+            id: 'rightbutton',
+            icon: require('../../img/whatshot.png'),
           },
         ],
       },
